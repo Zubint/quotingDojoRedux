@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Quotes!  By Quoting Dojo Users</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        // console.log(allQuotes);
+      })
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+          <h1>All the quotes you have ever wanted, but were afraid to ask... </h1>
+          <h3> Read them and weep! </h3>
+          <a href="/">Go Back</a>
+          <hr>
+
+          <%
+            for(idx=0; idx<allQuotes.length; idx++)
+          {
+              var monthsOfYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+              var myDate = new Date();
+              myDate = allQuotes[idx].created_on;
+              var myHours = myDate.getHours();
+              var myMinutes = myDate.getMinutes();
+              var formattedDate = monthsOfYear[myDate.getMonth()] + " " + myDate.getDate() + " " + myDate.getFullYear();
+
+              if (myMinutes<10){
+                myMinutes = "0"+myMinutes;
+              }
+              if(myHours>12)
+              {
+                myHours -=12;
+                strTime = myHours + ":" + myMinutes + "pm";
+              }
+              else
+              {
+                strTime = myHours + ":" + myMinutes + "am";
+              }
+              formattedDate = strTime + " " + formattedDate; %>
+              <!-- console.log(formattedDate); -->
+              <div>
+                  <h3> <%= allQuotes[idx].quote; %> </h3>
+                  <p style="text-align:center; margin:5px auto;"> <%= "-" + allQuotes[idx].name + " at " + formattedDate %> </p>
+                  <h4 class="like"> <%=allQuotes[idx].upvotes; %>
+                  <a href='/quotes/upvote/<%=allQuotes[idx]._id%>'><img class="like" src="/img/like.png"></a></h4>
+                  <hr>
+              </div>
+           <% } %>
+         </div>
+       </div>
+  </body>
+</html>

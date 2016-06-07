@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome to Quoting Dojo MEAN</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('button').click(function(){
+          // alert("clearing...");
+          $('#errors').html('');
+            // errors =[];
+        })
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div>
+          <h1>WELCOME TO QUOTING DOJO</H1>
+        </div>
+
+        <form method="post" action="/quotes/add">
+            <p> Your Name: <input type="text" name="name"> </p>
+            <p> Your Quote: <textarea name="quote" style="rows=8"> </textarea></p>
+            <button type="submit">Add my Quote!</button> <button><a href="/quotes">Skip to quotes</a></button>
+        </form>
+
+        <div id="errors" class="hidden">
+            <% for(var idx=0; idx<errors.length; idx++){ %>
+               <p class="red"> <%=  errors[idx] %> </p>
+          <%  } %>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>
